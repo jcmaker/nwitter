@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { dbService, storageService } from "fbase";
 import Nweet from "components/Nweet";
-import { v4 as uuidv4 } from "uuid";
 
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
   const [attachment, setAttachment] = useState();
-  const getNweets = async () => {
-    const dbNweets = await dbService.collection("nweets").get();
-    dbNweets.forEach((document) => {
-      const nweetObject = {
-        ...document.data(),
-        id: document.id,
-      };
-      setNweets((prev) => [nweetObject, ...prev]);
-    });
-  };
   useEffect(() => {
-    getNweets();
     dbService.collection("nweets").onSnapshot((snapshot) => {
       const nweetArray = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -83,7 +72,7 @@ const Home = ({ userObj }) => {
         {attachment && (
           <div>
             <img src={attachment} width="50px" height="50px" />
-            <button onClick={onClearAttachment}>[ X ]</button>
+            <button onClick={onClearAttachment}>Clear</button>
           </div>
         )}
       </form>
