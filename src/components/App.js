@@ -38,6 +38,10 @@ function App() {
       ) : (
         "Initializing..."
       )}
+<<<<<<< HEAD
+=======
+      <footer>&copy;Nwitter {new Date().getFullYear()} - jcmaker0627</footer>
+>>>>>>> parent of 2d9820ed... styles 1.1 finished
     </>
   );
 }
