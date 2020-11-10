@@ -36,11 +36,8 @@ function App() {
           userObj={userObj}
         />
       ) : (
-        "Initializing. . ."
+        "Initializing..."
       )}
-      <footer className="footer">
-        &copy;Nwitter {new Date().getFullYear()} - jcmaker0627
-      </footer>
     </>
   );
 }
